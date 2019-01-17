@@ -19,9 +19,9 @@
         text: "text/plain"
     }).done( function (data) {
         //alert("done");
-        var desc = "descriptor" + data.split("var descriptor")[1].split("// Register")[0];
+        var desc = "descriptor" + data.split("var descriptor")[1].split("ScratchExtensions.register")[0];
         var descriptor;
-        namespace = data.split("ScratchExtensions.register('")[1].split("', descriptor, ext);")[0];
+        namespace = data.split("ScratchExtensions.register(")[1].split(", descriptor, ext);")[0].replace(/\s/g, '');;
         eval(desc);
         //here we go...
         descriptor.blocks.forEach(reformat);
