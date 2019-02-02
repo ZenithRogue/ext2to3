@@ -6,7 +6,6 @@
 // @author       NitroCipher
 // @match        https://scratch.mit.edu/convert/*
 // @grant        none
-// @require      https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js
 // ==/UserScript==
 
 (function() {
@@ -14,11 +13,7 @@
     var namespace;
     var newDesc = "";
     var url = getUrlVars()["url"];
-    $.ajax({
-        url: url,
-        text: "text/plain"
-    }).done( function (data) {
-        //alert("done");
+    fetch(url).then(data => data.text()).then(data => {
         var desc = "descriptor" + data.split("var descriptor")[1].split("ScratchExtensions.register")[0];
         var descriptor;
         namespace = data.split("ScratchExtensions.register(")[1].split(", descriptor, ext);")[0].replace(/\s/g, '');;
@@ -26,7 +21,7 @@
         //here we go...
         descriptor.blocks.forEach(reformat);
 
-        $(".box-content").html(newDesc);
+        document.querySelector(".box-content").innerHTML = newDesc;
     });
 
     function reformat(item, index) {
