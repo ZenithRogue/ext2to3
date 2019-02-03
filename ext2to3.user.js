@@ -64,12 +64,12 @@
 
     function getBlockType (oldType) {
         switch (oldType) {
-            case ' ': return 'Scratch.BlockType.COMMAND';
-            case 'w': return 'Scratch.BlockType.COMMAND';
-            case 'r': return 'Scratch.BlockType.REPORTER';
-            case 'R': return 'Scratch.BlockType.REPORTER';
-            case 'b': return 'Scratch.BlockType.BOOLEAN';
-            case 'h': return 'Scratch.BlockType.HAT';
+            case ' ': return 'command';
+            case 'w': return 'command';
+            case 'r': return 'reporter';
+            case 'R': return 'reporter';
+            case 'b': return 'Boolean';
+            case 'h': return 'hat';
         }
     }
 
