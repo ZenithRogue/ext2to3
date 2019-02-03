@@ -42,7 +42,7 @@
                 return {
                     opcode: block[2],
                     blockType: getBlockType(block[0]), // Get the block type
-                    text: getNewArgs(block), // TODO: Change the inputs to the new format
+                    text: getNewArgs(block, ext[block[2]]), // TODO: Change the inputs to the new format
                     arguments: argDescriptor
                 }
             })
