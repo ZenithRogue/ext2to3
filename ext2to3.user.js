@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         Scratch ext2to3
 // @namespace    http://tampermonkey.net/
-// @version      0.4b
+// @version      0.4d
 // @description  try to take over the world!
 // @author       NitroCipher and Jamesbmadden
 // @match        https://scratch.mit.edu/convert/*
 // @grant        none
 // @require      https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js
+// @require      https://cdn.rawgit.com/beautify-web/js-beautify/v1.8.9/js/lib/beautify.js
 // ==/UserScript==
 
 (function() {
@@ -50,8 +51,9 @@
             }
         }
         Scratch.extensions.register(new ${id}());`; // TODO: Add functions
-
-        $(".box-content").html(result);
+        $(".box-content").css("text-align", "left");
+        $(".box-content").css("padding-left", "50px");
+        $(".box-content").html("<pre>" + js_beautify(result) + "</pre>");
     });
 
     function getUrlVars() {
@@ -78,7 +80,7 @@
         argValue = 0;
         fullArg = "";
         splitArg.forEach(switchArgs);
-        return fullArg
+        return fullArg.substr(1);
     }
 
     function switchArgs (oldText) {
