@@ -16,17 +16,17 @@ class NitroBlock {
             }, {
                 "opcode": "rgb",
                 "blockType": "reporter",
-                "text": "red [A] green [B] blue [C]",
+                "text": "red [r] green [g] blue [b]",
                 "arguments": {
-                    "A": {
+                    "r": {
                         "type": "number",
                         "defaultValue": 255
                     },
-                    "B": {
+                    "g": {
                         "type": "number",
                         "defaultValue": 0
                     },
-                    "C": {
+                    "b": {
                         "type": "number",
                         "defaultValue": 0
                     }
@@ -34,13 +34,13 @@ class NitroBlock {
             }, {
                 "opcode": "power",
                 "blockType": "reporter",
-                "text": "[A] ^ [B]",
+                "text": "[num] ^ [power]",
                 "arguments": {
-                    "A": {
+                    "num": {
                         "type": "number",
                         "defaultValue": 5
                     },
-                    "B": {
+                    "power": {
                         "type": "number",
                         "defaultValue": 2
                     }
@@ -48,17 +48,17 @@ class NitroBlock {
             }, {
                 "opcode": "textif",
                 "blockType": "reporter",
-                "text": "if [A] then [B] else [C]",
+                "text": "if [bool] then [text1] else [text2]",
                 "arguments": {
-                    "A": {
+                    "bool": {
                         "type": "Boolean",
                         "defaultValue": ""
                     },
-                    "B": {
+                    "text1": {
                         "type": "string",
                         "defaultValue": "hello"
                     },
-                    "C": {
+                    "text2": {
                         "type": "string",
                         "defaultValue": "world"
                     }
@@ -66,9 +66,9 @@ class NitroBlock {
             }, {
                 "opcode": "alertbox",
                 "blockType": "command",
-                "text": "alert [A]",
+                "text": "alert [string]",
                 "arguments": {
-                    "A": {
+                    "string": {
                         "type": "string",
                         "defaultValue": "hello world"
                     }
@@ -76,9 +76,9 @@ class NitroBlock {
             }, {
                 "opcode": "whenThis",
                 "blockType": "hat",
-                "text": "when [A]",
+                "text": "when [bool]",
                 "arguments": {
-                    "A": {
+                    "bool": {
                         "type": "Boolean",
                         "defaultValue": ""
                     }
@@ -86,13 +86,13 @@ class NitroBlock {
             }, {
                 "opcode": "mathy",
                 "blockType": "reporter",
-                "text": "[A] %m.supermath [B]",
+                "text": "[num1] %m.supermath [oper]",
                 "arguments": {
-                    "A": {
+                    "num1": {
                         "type": "number",
                         "defaultValue": ""
                     },
-                    "B": {
+                    "oper": {
                         "type": "number",
                         "defaultValue": ""
                     }
@@ -100,17 +100,17 @@ class NitroBlock {
             }, {
                 "opcode": "substringy",
                 "blockType": "reporter",
-                "text": "letters [A] through [B] of [C]",
+                "text": "letters [num1] through [num2] of [string]",
                 "arguments": {
-                    "A": {
+                    "num1": {
                         "type": "number",
                         "defaultValue": "2"
                     },
-                    "B": {
+                    "num2": {
                         "type": "number",
                         "defaultValue": "5"
                     },
-                    "C": {
+                    "string": {
                         "type": "string",
                         "defaultValue": "hello world"
                     }
@@ -118,9 +118,9 @@ class NitroBlock {
             }, {
                 "opcode": "javablock",
                 "blockType": "reporter",
-                "text": "javascript [A]",
+                "text": "javascript [string]",
                 "arguments": {
-                    "A": {
+                    "string": {
                         "type": "string",
                         "defaultValue": "window.alert(\"yay\")"
                     }
@@ -128,9 +128,9 @@ class NitroBlock {
             }, {
                 "opcode": "blank",
                 "blockType": "command",
-                "text": "[A]",
+                "text": "[string]",
                 "arguments": {
-                    "A": {
+                    "string": {
                         "type": "string",
                         "defaultValue": ""
                     }
@@ -138,17 +138,17 @@ class NitroBlock {
             }, {
                 "opcode": "itOfStr",
                 "blockType": "reporter",
-                "text": "word [A] of [B] separated by [C]",
+                "text": "word [num] of [string] separated by [seper]",
                 "arguments": {
-                    "A": {
+                    "num": {
                         "type": "number",
                         "defaultValue": "2"
                     },
-                    "B": {
+                    "string": {
                         "type": "string",
                         "defaultValue": "hello world"
                     },
-                    "C": {
+                    "seper": {
                         "type": "string",
                         "defaultValue": " "
                     }
@@ -156,26 +156,26 @@ class NitroBlock {
             }, {
                 "opcode": "exclu",
                 "blockType": "Boolean",
-                "text": "[A] xor [B]",
+                "text": "[bool1] xor [bool2]",
                 "arguments": {
-                    "A": {
+                    "bool1": {
                         "type": "Boolean",
                         "defaultValue": false
                     },
-                    "B": {
+                    "bool2": {
                         "type": "Boolean"
                     }
                 }
             }, {
                 "opcode": "strCont",
                 "blockType": "Boolean",
-                "text": "[A] contains [B]",
+                "text": "[string1] contains [string2]",
                 "arguments": {
-                    "A": {
+                    "string1": {
                         "type": "string",
                         "defaultValue": "hello world"
                     },
-                    "B": {
+                    "string2": {
                         "type": "string",
                         "defaultValue": "hello"
                     }
@@ -183,9 +183,9 @@ class NitroBlock {
             }, {
                 "opcode": "dPrompt",
                 "blockType": "reporter",
-                "text": "prompt user with [A]",
+                "text": "prompt user with [prompty]",
                 "arguments": {
-                    "A": {
+                    "prompty": {
                         "type": "string",
                         "defaultValue": "how are you?"
                     }
@@ -193,17 +193,17 @@ class NitroBlock {
             }, {
                 "opcode": "repAll",
                 "blockType": "reporter",
-                "text": "replace all of [A] in [B] with [C]",
+                "text": "replace all of [finder] in [string] with [replacer]",
                 "arguments": {
-                    "A": {
+                    "finder": {
                         "type": "string",
                         "defaultValue": ""
                     },
-                    "B": {
+                    "string": {
                         "type": "string",
                         "defaultValue": ""
                     },
-                    "C": {
+                    "replacer": {
                         "type": "string",
                         "defaultValue": ""
                     }
@@ -211,13 +211,13 @@ class NitroBlock {
             }, {
                 "opcode": "greaterOrEqual",
                 "blockType": "Boolean",
-                "text": "[A] ≥ [B]",
+                "text": "[string1] ≥ [string2]",
                 "arguments": {
-                    "A": {
+                    "string1": {
                         "type": "string",
                         "defaultValue": ""
                     },
-                    "B": {
+                    "string2": {
                         "type": "string",
                         "defaultValue": ""
                     }
@@ -225,13 +225,13 @@ class NitroBlock {
             }, {
                 "opcode": "lessOrEqual",
                 "blockType": "Boolean",
-                "text": "[A] ≤ [B]",
+                "text": "[string1] ≤ [string2]",
                 "arguments": {
-                    "A": {
+                    "string1": {
                         "type": "string",
                         "defaultValue": ""
                     },
-                    "B": {
+                    "string2": {
                         "type": "string",
                         "defaultValue": ""
                     }
@@ -239,9 +239,9 @@ class NitroBlock {
             }, {
                 "opcode": "jQuGet",
                 "blockType": "reporter",
-                "text": "get data from url: [A]",
+                "text": "get data from url: [myURL]",
                 "arguments": {
-                    "A": {
+                    "myURL": {
                         "type": "string",
                         "defaultValue": "http://google.com"
                     }
@@ -249,19 +249,34 @@ class NitroBlock {
             }]
         };
     }
-    ncheck(check) {
+    ncheck({
+        check
+    }) {
         return true
     }
-    color(color) {
+    color({
+        color
+    }) {
         return Math.pow(color, 1);
     }
-    rgb(r, g, b) {
+    rgb({
+        r,
+        g,
+        b
+    }) {
         return ((((r * 256) + g) * 256) + b);
     }
-    power(num, power) {
+    power({
+        num,
+        power
+    }) {
         return Math.pow(num, power);
     }
-    textif(bool, text1, text2) {
+    textif({
+        bool,
+        text1,
+        text2
+    }) {
         if (bool) {
             return text1
         } else {
@@ -269,13 +284,21 @@ class NitroBlock {
         }
 
     }
-    alertbox(string) {
+    alertbox({
+        string
+    }) {
         window.alert(string);
     }
-    whenThis(bool) {
+    whenThis({
+        bool
+    }) {
         return bool;
     }
-    mathy(num1, oper, num2) {
+    mathy({
+        num1,
+        oper,
+        num2
+    }) {
         if (oper === '+') {
             return (num1 + num2)
         }
@@ -295,19 +318,34 @@ class NitroBlock {
             return (num1 * (Math.sqrt(num2)))
         }
     }
-    substringy(num1, num2, string) {
+    substringy({
+        num1,
+        num2,
+        string
+    }) {
         return string.substring(num1 - 1, num2);
     }
-    javablock(string) {
+    javablock({
+        string
+    }) {
         return eval(string);
     }
-    blank(string) {}
-    itOfStr(num, string, seper) {
+    blank({
+        string
+    }) {}
+    itOfStr({
+        num,
+        string,
+        seper
+    }) {
         var str = string;
         var res = str.split(seper);
         return (res[num - 1]);
     }
-    exclu(bool1, bool2) {
+    exclu({
+        bool1,
+        bool2
+    }) {
         if (bool1 && bool2) {
             return false;
         } else {
@@ -319,22 +357,39 @@ class NitroBlock {
             }
         }
     }
-    strCont(string1, string2) {
+    strCont({
+        string1,
+        string2
+    }) {
         return string1.includes(string2);
     }
-    dPrompt(prompty) {
+    dPrompt({
+        prompty
+    }) {
         return prompt(prompty);
     }
-    repAll(finder, string, replacer) {
+    repAll({
+        finder,
+        string,
+        replacer
+    }) {
         return string.replace(new RegExp(finder, 'gi'), replacer);
     }
-    greaterOrEqual(string1, string2) {
+    greaterOrEqual({
+        string1,
+        string2
+    }) {
         return (string1 >= string2);
     }
-    lessOrEqual(string1, string2) {
+    lessOrEqual({
+        string1,
+        string2
+    }) {
         return (string1 <= string2);
     }
-    jQuGet(myURL) {
+    jQuGet({
+        myURL
+    }) {
 
         $.ajaxSetup({
             async: false
