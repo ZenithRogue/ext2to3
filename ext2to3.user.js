@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         Scratch 2.0 extension converter
+// @name         Scratch ext2to3
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.4b
 // @description  try to take over the world!
-// @author       NitroCipher
+// @author       NitroCipher and Jamesbmadden
 // @match        https://scratch.mit.edu/convert/*
 // @grant        none
 // @require      https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js
@@ -11,28 +11,48 @@
 
 (function() {
     'use strict';
-    var namespace;
-    var newDesc = "";
+    var fullArg = "";
     var url = getUrlVars()["url"];
+    var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+    var argValue = 0;
     $.ajax({
         url: url,
         text: "text/plain"
     }).done( function (data) {
         //alert("done");
-        var desc = "descriptor" + data.split("var descriptor")[1].split("ScratchExtensions.register")[0];
-        var descriptor;
-        namespace = data.split("ScratchExtensions.register(")[1].split(", descriptor, ext);")[0].replace(/\s/g, '');;
-        eval(desc);
+        let name, descriptor, ext, id;
+        const ScratchExtensions = { // Get the properties of the extension
+            register: (_name, _descriptor, _ext) => {
+                name = _name;
+                descriptor = _descriptor;
+                ext = _ext;
+                id = _name.replace(/ /g, '');
+            }
+        }
+        eval(data);
+
         //here we go...
-        descriptor.blocks.forEach(reformat);
+        let info = {
+            id, // Set the id to the extension's name without spaces
+            name, // Set the display name
+            blocks: descriptor.blocks.map((block, index) => { // convert the block to the new format
+                return {
+                    opcode: block[2],
+                    blockType: getBlockType(block[0]), // Get the block type
+                    text: getNewArgs(block[1]) // TODO: Change the inputs to the new format
+                }
+            })
+        };
+        /* Create a String with the code for the Scratch 3 extension */
+        let result = `class ${id} {
+            getInfo() {
+                return ${JSON.stringify(info)};
+            }
+        }
+        Scratch.extensions.register(new ${id}());`; // TODO: Add functions
 
-        $(".box-content").html(newDesc);
+        $(".box-content").html(result);
     });
-
-    function reformat(item, index) {
-        var block = "{opcode: '" + item[2] + "',text: formatMessage({ id:" +namespace+ "." +item[2]+ ", default: '";
-        newDesc = newDesc + block + "</br>";
-    }
 
     function getUrlVars() {
         var vars = {};
@@ -40,6 +60,34 @@
             vars[key] = value;
         });
         return vars;
+    }
+
+    function getBlockType (oldType) {
+        switch (oldType) {
+            case ' ': return 'Scratch.BlockType.COMMAND';
+            case 'w': return 'Scratch.BlockType.COMMAND';
+            case 'r': return 'Scratch.BlockType.REPORTER';
+            case 'R': return 'Scratch.BlockType.REPORTER';
+            case 'b': return 'Scratch.BlockType.BOOLEAN';
+            case 'h': return 'Scratch.BlockType.HAT';
+        }
+    }
+
+    function getNewArgs (oldText) {
+        var splitArg = oldText.split(" ");
+        argValue = 0;
+        fullArg = "";
+        splitArg.forEach(switchArgs);
+        return fullArg
+    }
+
+    function switchArgs (oldText) {
+        switch (oldText) {
+            default: fullArg = fullArg + " " + oldText; break;
+            case '%b': fullArg = fullArg + " [" +letters[argValue]+ "]"; argValue++; break;
+            case '%n': fullArg = fullArg + " [" +letters[argValue]+ "]"; argValue++; break;
+            case '%s': fullArg = fullArg + " [" +letters[argValue]+ "]"; argValue++; break;
+        }
     }
     // Your code here...
 })();
