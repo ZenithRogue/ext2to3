@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scratch ext2to3
 // @namespace    http://tampermonkey.net/
-// @version      0.6a
+// @version      0.6b
 // @description  try to take over the world!
 // @author       NitroCipher and Jamesbmadden
 // @match        https://scratch.mit.edu/convert/*
@@ -18,6 +18,7 @@
     var argValue = 0;
     var argDescriptor;
     var argDefaults;
+    var argNames;
     $.ajax({
         url: url,
         text: "text/plain"
@@ -81,7 +82,7 @@
 
     function getNewArgs (oldText, func) {
         var splitArg = oldText[1].split(" ");
-        window.argNames = getArgNames(func); // Add to window so that getArgNames can read
+        argNames = getArgNames(func); // Add to window so that getArgNames can read
         argValue = 0;
         fullArg = "";
         argDescriptor = {};
@@ -129,6 +130,15 @@
                 fullArg = fullArg + " [" + myArg + "]";
                 argDescriptor[myArg] = {
                     "type": "string",
+                    "defaultValue": argDefaults[argValue],
+                };
+                argValue++;
+                break;
+            case '%c':
+                myArg = argNames[argValue];
+                fullArg = fullArg + " [" + myArg + "]";
+                argDescriptor[myArg] = {
+                    "type": "color",
                     "defaultValue": argDefaults[argValue],
                 };
                 argValue++;
