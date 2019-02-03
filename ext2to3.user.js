@@ -79,8 +79,9 @@
         }
     }
 
-    function getNewArgs (oldText) {
+    function getNewArgs (oldText, func) {
         var splitArg = oldText[1].split(" ");
+        window.argNames = getArgNames(func); // Add to window so that getArgNames can read
         argValue = 0;
         fullArg = "";
         argDescriptor = {};
@@ -89,6 +90,15 @@
         splitArg.forEach(switchArgs);
         return fullArg.substr(1);
     }
+    
+    function getArgNames (func) {
+        let funcString = func.toString(); // Get the function as a string
+        let args = funcString.split('(')[1].split(')')[0]; // Get the arguments
+        let argsList = args.split(',').map(arg => { // Split them at the commas
+          return arg.trim(); // Trim whitespace and return them as an argument name
+        })
+        return argsList;
+      }
 
     function switchArgs(oldText) {
         var myArg;
@@ -97,7 +107,7 @@
                 fullArg = fullArg + " " + oldText;
                 break;
             case '%b':
-                myArg = letters[argValue];
+                myArg = argNames[argValue];
                 fullArg = fullArg + " [" + myArg + "]";
                 argDescriptor[myArg] = {
                     "type": "Boolean",
@@ -106,7 +116,7 @@
                 argValue++;
                 break;
             case '%n':
-                myArg = letters[argValue];
+                myArg = argNames[argValue];
                 fullArg = fullArg + " [" + myArg + "]";
                 argDescriptor[myArg] = {
                     "type": "number",
@@ -115,7 +125,7 @@
                 argValue++;
                 break;
             case '%s':
-                myArg = letters[argValue];
+                myArg = argNames[argValue];
                 fullArg = fullArg + " [" + myArg + "]";
                 argDescriptor[myArg] = {
                     "type": "string",
@@ -128,10 +138,10 @@
 
     function convertFunctions (descriptor, ext) {
         let functions = '';
-        descriptor.blocks.forEach((block, index) => {
+            descriptor.blocks.forEach((block, index) => {
             let func = ext[block[2]]; // Get the function for the block
-            functions += func.toString().replace('function', block[2]); // Convert to string and replace the function prefix with the function name
-            // TODO: Change the arguments to the new behavior (probably involving the argument converter)
+            let named = func.toString().replace('function', block[2]); // Convert to string and replace the function prefix with the function name
+            functions +=  named.replace('(', '({').replace(')', '})'); // Encase the arguments in {} for the new format
         });
         return functions;
     }
