@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scratch ext2to3
 // @namespace    http://tampermonkey.net/
-// @version      0.5a
+// @version      0.6a
 // @description  try to take over the world!
 // @author       NitroCipher and Jamesbmadden
 // @match        https://scratch.mit.edu/convert/*
@@ -17,6 +17,7 @@
     var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
     var argValue = 0;
     var argDescriptor;
+    var argDefaults;
     $.ajax({
         url: url,
         text: "text/plain"
@@ -41,7 +42,7 @@
                 return {
                     opcode: block[2],
                     blockType: getBlockType(block[0]), // Get the block type
-                    text: getNewArgs(block[1]), // TODO: Change the inputs to the new format
+                    text: getNewArgs(block), // TODO: Change the inputs to the new format
                     arguments: argDescriptor
                 }
             })
@@ -79,10 +80,12 @@
     }
 
     function getNewArgs (oldText) {
-        var splitArg = oldText.split(" ");
+        var splitArg = oldText[1].split(" ");
         argValue = 0;
         fullArg = "";
         argDescriptor = {};
+        argDefaults = oldText.slice(3, oldText.length);
+        console.log(argDefaults);
         splitArg.forEach(switchArgs);
         return fullArg.substr(1);
     }
@@ -98,6 +101,7 @@
                 fullArg = fullArg + " [" + myArg + "]";
                 argDescriptor[myArg] = {
                     "type": "Boolean",
+                    "defaultValue": argDefaults[argValue],
                 };
                 argValue++;
                 break;
@@ -106,6 +110,7 @@
                 fullArg = fullArg + " [" + myArg + "]";
                 argDescriptor[myArg] = {
                     "type": "number",
+                    "defaultValue": argDefaults[argValue],
                 };
                 argValue++;
                 break;
@@ -114,6 +119,7 @@
                 fullArg = fullArg + " [" + myArg + "]";
                 argDescriptor[myArg] = {
                     "type": "string",
+                    "defaultValue": argDefaults[argValue],
                 };
                 argValue++;
                 break;
@@ -121,13 +127,13 @@
     }
 
     function convertFunctions (descriptor, ext) {
-      let functions = '';
-      descriptor.blocks.forEach((block, index) => {
-        let func = ext[block[2]]; // Get the function for the block
-        functions += func.toString().replace('function', block[2]); // Convert to string and replace the function prefix with the function name
-        // TODO: Change the arguments to the new behavior (probably involving the argument converter)
-      });
-      return functions;
+        let functions = '';
+        descriptor.blocks.forEach((block, index) => {
+            let func = ext[block[2]]; // Get the function for the block
+            functions += func.toString().replace('function', block[2]); // Convert to string and replace the function prefix with the function name
+            // TODO: Change the arguments to the new behavior (probably involving the argument converter)
+        });
+        return functions;
     }
     // Your code here...
 })();
