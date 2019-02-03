@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scratch ext2to3
 // @namespace    http://tampermonkey.net/
-// @version      0.6b
+// @version      0.6d
 // @description  try to take over the world!
 // @author       NitroCipher and Jamesbmadden
 // @match        https://scratch.mit.edu/convert/*
@@ -59,6 +59,10 @@
         $(".box-content").css("text-align", "left");
         $(".box-content").css("padding-left", "50px");
         $(".box-content").html("<pre>" + js_beautify(result) + "</pre>");
+        $(".box-head").html("<button id='extDownload' type='button'>Download " + name + " as a 3.0 extension file</button>");
+        $( "#extDownload" ).click(function() {
+           download(js_beautify(result), name + "_3.js", "text/javascript");
+        });
     });
 
     function getUrlVars() {
@@ -154,6 +158,24 @@
             functions +=  named.replace('(', '({').replace(')', '})'); // Encase the arguments in {} for the new format
         });
         return functions;
+    }
+
+    function download(data, filename, type) {
+        var file = new Blob([data], {type: type});
+        if (window.navigator.msSaveOrOpenBlob) {
+            window.navigator.msSaveOrOpenBlob(file, filename);
+        } else { // Others
+            var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(function() {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            }, 0);
+        }
     }
     // Your code here...
 })();
