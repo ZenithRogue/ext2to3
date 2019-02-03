@@ -11,8 +11,13 @@ class NitroBlock {
             }, {
                 "opcode": "color",
                 "blockType": "reporter",
-                "text": "color %c",
-                "arguments": {}
+                "text": "color [color]",
+                "arguments": {
+                    "color": {
+                        "type": "color",
+                        "defaultValue": 0
+                    }
+                }
             }, {
                 "opcode": "rgb",
                 "blockType": "reporter",
