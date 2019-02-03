@@ -51,6 +51,7 @@
             getInfo() {
                 return ${JSON.stringify(info)};
             }
+            ${convertFunctions(descriptor, ext)}
         }
         Scratch.extensions.register(new ${id}());`; // TODO: Add functions
         $(".box-content").css("text-align", "left");
@@ -117,6 +118,16 @@
                 argValue++;
                 break;
         }
+    }
+
+    function convertFunctions (descriptor, ext) {
+      let functions = '';
+      descriptor.blocks.forEach((block, index) => {
+        let func = ext[block[2]]; // Get the function for the block
+        functions += func.toString().replace('function', block[2]); // Convert to string and replace the function prefix with the function name
+        // TODO: Change the arguments to the new behavior (probably involving the argument converter)
+      });
+      return functions;
     }
     // Your code here...
 })();
