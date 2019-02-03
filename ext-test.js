@@ -217,5 +217,100 @@ class NitroBlock {
             }]
         };
     }
+    ncheck(check) {
+        return true
+    }
+    color(color) {
+        return Math.pow(color, 1);
+    }
+    rgb(r, g, b) {
+        return ((((r * 256) + g) * 256) + b);
+    }
+    power(num, power) {
+        return Math.pow(num, power);
+    }
+    textif(bool, text1, text2) {
+        if (bool) {
+            return text1
+        } else {
+            return text2
+        }
+
+    }
+    alertbox(string) {
+        window.alert(string);
+    }
+    whenThis(bool) {
+        return bool;
+    }
+    mathy(num1, oper, num2) {
+        if (oper === '+') {
+            return (num1 + num2)
+        }
+        if (oper === '-') {
+            return (num1 - num2)
+        }
+        if (oper === '*') {
+            return (num1 * num2)
+        }
+        if (oper === '/') {
+            return (num1 / num2)
+        }
+        if (oper === '^') {
+            return Math.pow(num1, num2)
+        }
+        if (oper === 'sqrt') {
+            return (num1 * (Math.sqrt(num2)))
+        }
+    }
+    substringy(num1, num2, string) {
+        return string.substring(num1 - 1, num2);
+    }
+    javablock(string) {
+        return eval(string);
+    }
+    blank(string) {}
+    itOfStr(num, string, seper) {
+        var str = string;
+        var res = str.split(seper);
+        return (res[num - 1]);
+    }
+    exclu(bool1, bool2) {
+        if (bool1 && bool2) {
+            return false;
+        } else {
+            if (bool1) {
+                return true;
+            }
+            if (bool2) {
+                return true;
+            }
+        }
+    }
+    strCont(string1, string2) {
+        return string1.includes(string2);
+    }
+    dPrompt(prompty) {
+        return prompt(prompty);
+    }
+    repAll(finder, string, replacer) {
+        return string.replace(new RegExp(finder, 'gi'), replacer);
+    }
+    greaterOrEqual(string1, string2) {
+        return (string1 >= string2);
+    }
+    lessOrEqual(string1, string2) {
+        return (string1 <= string2);
+    }
+    jQuGet(myURL) {
+
+        $.ajaxSetup({
+            async: false
+        });
+        $.get('https://cors-anywhere.herokuapp.com/' + myURL, function(data) {
+            window.httpdata = data;
+        });
+        return window.httpdata;
+    }
 }
 Scratch.extensions.register(new NitroBlock());
