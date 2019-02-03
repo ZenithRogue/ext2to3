@@ -12,17 +12,7 @@ class NitroBlock {
                 "opcode": "color",
                 "blockType": "reporter",
                 "text": "color %c",
-                "arguments": {
-                    "A": {
-                        "type": "number"
-                    },
-                    "B": {
-                        "type": "number"
-                    },
-                    "C": {
-                        "type": "number"
-                    }
-                }
+                "arguments": {}
             }, {
                 "opcode": "rgb",
                 "blockType": "reporter",
@@ -33,12 +23,27 @@ class NitroBlock {
                     },
                     "B": {
                         "type": "number"
+                    },
+                    "C": {
+                        "type": "number"
                     }
                 }
             }, {
                 "opcode": "power",
                 "blockType": "reporter",
                 "text": "[A] ^ [B]",
+                "arguments": {
+                    "A": {
+                        "type": "number"
+                    },
+                    "B": {
+                        "type": "number"
+                    }
+                }
+            }, {
+                "opcode": "textif",
+                "blockType": "reporter",
+                "text": "if [A] then [B] else [C]",
                 "arguments": {
                     "A": {
                         "type": "Boolean"
@@ -51,21 +56,12 @@ class NitroBlock {
                     }
                 }
             }, {
-                "opcode": "textif",
-                "blockType": "reporter",
-                "text": "if [A] then [B] else [C]",
-                "arguments": {
-                    "A": {
-                        "type": "string"
-                    }
-                }
-            }, {
                 "opcode": "alertbox",
                 "blockType": "command",
                 "text": "alert [A]",
                 "arguments": {
                     "A": {
-                        "type": "Boolean"
+                        "type": "string"
                     }
                 }
             }, {
@@ -74,10 +70,7 @@ class NitroBlock {
                 "text": "when [A]",
                 "arguments": {
                     "A": {
-                        "type": "number"
-                    },
-                    "B": {
-                        "type": "number"
+                        "type": "Boolean"
                     }
                 }
             }, {
@@ -90,9 +83,6 @@ class NitroBlock {
                     },
                     "B": {
                         "type": "number"
-                    },
-                    "C": {
-                        "type": "string"
                     }
                 }
             }, {
@@ -101,6 +91,12 @@ class NitroBlock {
                 "text": "letters [A] through [B] of [C]",
                 "arguments": {
                     "A": {
+                        "type": "number"
+                    },
+                    "B": {
+                        "type": "number"
+                    },
+                    "C": {
                         "type": "string"
                     }
                 }
@@ -119,6 +115,15 @@ class NitroBlock {
                 "text": "[A]",
                 "arguments": {
                     "A": {
+                        "type": "string"
+                    }
+                }
+            }, {
+                "opcode": "itOfStr",
+                "blockType": "reporter",
+                "text": "word [A] of [B] separated by [C]",
+                "arguments": {
+                    "A": {
                         "type": "number"
                     },
                     "B": {
@@ -129,27 +134,15 @@ class NitroBlock {
                     }
                 }
             }, {
-                "opcode": "itOfStr",
-                "blockType": "reporter",
-                "text": "word [A] of [B] separated by [C]",
-                "arguments": {
-                    "A": {
-                        "type": "Boolean"
-                    },
-                    "B": {
-                        "type": "Boolean"
-                    }
-                }
-            }, {
                 "opcode": "exclu",
                 "blockType": "Boolean",
                 "text": "[A] xor [B]",
                 "arguments": {
                     "A": {
-                        "type": "string"
+                        "type": "Boolean"
                     },
                     "B": {
-                        "type": "string"
+                        "type": "Boolean"
                     }
                 }
             }, {
@@ -159,6 +152,9 @@ class NitroBlock {
                 "arguments": {
                     "A": {
                         "type": "string"
+                    },
+                    "B": {
+                        "type": "string"
                     }
                 }
             }, {
@@ -167,12 +163,6 @@ class NitroBlock {
                 "text": "prompt user with [A]",
                 "arguments": {
                     "A": {
-                        "type": "string"
-                    },
-                    "B": {
-                        "type": "string"
-                    },
-                    "C": {
                         "type": "string"
                     }
                 }
@@ -185,6 +175,9 @@ class NitroBlock {
                         "type": "string"
                     },
                     "B": {
+                        "type": "string"
+                    },
+                    "C": {
                         "type": "string"
                     }
                 }
@@ -207,13 +200,20 @@ class NitroBlock {
                 "arguments": {
                     "A": {
                         "type": "string"
+                    },
+                    "B": {
+                        "type": "string"
                     }
                 }
             }, {
                 "opcode": "jQuGet",
                 "blockType": "reporter",
                 "text": "get data from url: [A]",
-                "arguments": {}
+                "arguments": {
+                    "A": {
+                        "type": "string"
+                    }
+                }
             }]
         };
     }
