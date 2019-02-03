@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scratch ext2to3
 // @namespace    http://tampermonkey.net/
-// @version      0.4d
+// @version      0.5a
 // @description  try to take over the world!
 // @author       NitroCipher and Jamesbmadden
 // @match        https://scratch.mit.edu/convert/*
@@ -16,6 +16,7 @@
     var url = getUrlVars()["url"];
     var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
     var argValue = 0;
+    var argDescriptor;
     $.ajax({
         url: url,
         text: "text/plain"
@@ -40,7 +41,8 @@
                 return {
                     opcode: block[2],
                     blockType: getBlockType(block[0]), // Get the block type
-                    text: getNewArgs(block[1]) // TODO: Change the inputs to the new format
+                    text: getNewArgs(block[1]), // TODO: Change the inputs to the new format
+                    arguments: argDescriptor
                 }
             })
         };
@@ -79,16 +81,41 @@
         var splitArg = oldText.split(" ");
         argValue = 0;
         fullArg = "";
+        argDescriptor = {};
         splitArg.forEach(switchArgs);
         return fullArg.substr(1);
     }
 
-    function switchArgs (oldText) {
+    function switchArgs(oldText) {
+        var myArg;
         switch (oldText) {
-            default: fullArg = fullArg + " " + oldText; break;
-            case '%b': fullArg = fullArg + " [" +letters[argValue]+ "]"; argValue++; break;
-            case '%n': fullArg = fullArg + " [" +letters[argValue]+ "]"; argValue++; break;
-            case '%s': fullArg = fullArg + " [" +letters[argValue]+ "]"; argValue++; break;
+            default:
+                fullArg = fullArg + " " + oldText;
+                break;
+            case '%b':
+                myArg = letters[argValue];
+                fullArg = fullArg + " [" + myArg + "]";
+                argDescriptor[myArg] = {
+                    "type": "Boolean",
+                };
+                argValue++;
+                break;
+            case '%n':
+                myArg = letters[argValue];
+                fullArg = fullArg + " [" + myArg + "]";
+                argDescriptor[myArg] = {
+                    "type": "number",
+                };
+                argValue++;
+                break;
+            case '%s':
+                myArg = letters[argValue];
+                fullArg = fullArg + " [" + myArg + "]";
+                argDescriptor[myArg] = {
+                    "type": "string",
+                };
+                argValue++;
+                break;
         }
     }
     // Your code here...
