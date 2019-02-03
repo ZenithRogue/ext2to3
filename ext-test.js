@@ -19,13 +19,16 @@ class NitroBlock {
                 "text": "red [A] green [B] blue [C]",
                 "arguments": {
                     "A": {
-                        "type": "number"
+                        "type": "number",
+                        "defaultValue": 255
                     },
                     "B": {
-                        "type": "number"
+                        "type": "number",
+                        "defaultValue": 0
                     },
                     "C": {
-                        "type": "number"
+                        "type": "number",
+                        "defaultValue": 0
                     }
                 }
             }, {
@@ -34,10 +37,12 @@ class NitroBlock {
                 "text": "[A] ^ [B]",
                 "arguments": {
                     "A": {
-                        "type": "number"
+                        "type": "number",
+                        "defaultValue": 5
                     },
                     "B": {
-                        "type": "number"
+                        "type": "number",
+                        "defaultValue": 2
                     }
                 }
             }, {
@@ -46,13 +51,16 @@ class NitroBlock {
                 "text": "if [A] then [B] else [C]",
                 "arguments": {
                     "A": {
-                        "type": "Boolean"
+                        "type": "Boolean",
+                        "defaultValue": ""
                     },
                     "B": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": "hello"
                     },
                     "C": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": "world"
                     }
                 }
             }, {
@@ -61,7 +69,8 @@ class NitroBlock {
                 "text": "alert [A]",
                 "arguments": {
                     "A": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": "hello world"
                     }
                 }
             }, {
@@ -70,7 +79,8 @@ class NitroBlock {
                 "text": "when [A]",
                 "arguments": {
                     "A": {
-                        "type": "Boolean"
+                        "type": "Boolean",
+                        "defaultValue": ""
                     }
                 }
             }, {
@@ -79,10 +89,12 @@ class NitroBlock {
                 "text": "[A] %m.supermath [B]",
                 "arguments": {
                     "A": {
-                        "type": "number"
+                        "type": "number",
+                        "defaultValue": ""
                     },
                     "B": {
-                        "type": "number"
+                        "type": "number",
+                        "defaultValue": ""
                     }
                 }
             }, {
@@ -91,13 +103,16 @@ class NitroBlock {
                 "text": "letters [A] through [B] of [C]",
                 "arguments": {
                     "A": {
-                        "type": "number"
+                        "type": "number",
+                        "defaultValue": "2"
                     },
                     "B": {
-                        "type": "number"
+                        "type": "number",
+                        "defaultValue": "5"
                     },
                     "C": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": "hello world"
                     }
                 }
             }, {
@@ -106,7 +121,8 @@ class NitroBlock {
                 "text": "javascript [A]",
                 "arguments": {
                     "A": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": "window.alert(\"yay\")"
                     }
                 }
             }, {
@@ -115,7 +131,8 @@ class NitroBlock {
                 "text": "[A]",
                 "arguments": {
                     "A": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": ""
                     }
                 }
             }, {
@@ -124,13 +141,16 @@ class NitroBlock {
                 "text": "word [A] of [B] separated by [C]",
                 "arguments": {
                     "A": {
-                        "type": "number"
+                        "type": "number",
+                        "defaultValue": "2"
                     },
                     "B": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": "hello world"
                     },
                     "C": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": " "
                     }
                 }
             }, {
@@ -139,7 +159,8 @@ class NitroBlock {
                 "text": "[A] xor [B]",
                 "arguments": {
                     "A": {
-                        "type": "Boolean"
+                        "type": "Boolean",
+                        "defaultValue": false
                     },
                     "B": {
                         "type": "Boolean"
@@ -151,10 +172,12 @@ class NitroBlock {
                 "text": "[A] contains [B]",
                 "arguments": {
                     "A": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": "hello world"
                     },
                     "B": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": "hello"
                     }
                 }
             }, {
@@ -163,7 +186,8 @@ class NitroBlock {
                 "text": "prompt user with [A]",
                 "arguments": {
                     "A": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": "how are you?"
                     }
                 }
             }, {
@@ -172,13 +196,16 @@ class NitroBlock {
                 "text": "replace all of [A] in [B] with [C]",
                 "arguments": {
                     "A": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": ""
                     },
                     "B": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": ""
                     },
                     "C": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": ""
                     }
                 }
             }, {
@@ -187,10 +214,12 @@ class NitroBlock {
                 "text": "[A] ≥ [B]",
                 "arguments": {
                     "A": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": ""
                     },
                     "B": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": ""
                     }
                 }
             }, {
@@ -199,10 +228,12 @@ class NitroBlock {
                 "text": "[A] ≤ [B]",
                 "arguments": {
                     "A": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": ""
                     },
                     "B": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": ""
                     }
                 }
             }, {
@@ -211,7 +242,8 @@ class NitroBlock {
                 "text": "get data from url: [A]",
                 "arguments": {
                     "A": {
-                        "type": "string"
+                        "type": "string",
+                        "defaultValue": "http://google.com"
                     }
                 }
             }]
