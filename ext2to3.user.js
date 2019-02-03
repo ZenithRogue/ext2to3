@@ -19,6 +19,8 @@
     var argDescriptor;
     var argDefaults;
     var argNames;
+    $(".box-head").html("<h2>Ext2to3</h2>"); // While it's loading, show some content
+    $(".box-content").html(`<p>Converting ${url}...</p>`);
     $.ajax({
         url: url,
         text: "text/plain"
@@ -59,7 +61,7 @@
         $(".box-content").css("text-align", "left");
         $(".box-content").css("padding-left", "50px");
         $(".box-content").html("<pre>" + js_beautify(result) + "</pre>");
-        $(".box-head").html("<button id='extDownload' type='button'>Download " + name + " as a 3.0 extension file</button>");
+        $(".box-head").html("<h2>Ext2to3</h2><button id='extDownload' type='button'>Download " + name + " as a 3.0 extension file</button>");
         $( "#extDownload" ).click(function() {
            download(js_beautify(result), name + "_3.js", "text/javascript");
         });
