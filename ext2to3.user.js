@@ -20,7 +20,7 @@
     var argDefaults;
     var argNames;
     $(".box-head").html("<h2>Ext2to3</h2>"); // While it's loading, show some content
-    $(".box-content").html(`<p>Converting ${url}...</p>`);
+    $(".box-content").html(`<h1>Converting ${url}...</h1>`);
     $.ajax({
         url: url,
         text: "text/plain"
