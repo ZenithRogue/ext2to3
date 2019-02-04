@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scratch ext2to3
-// @namespace    http://tampermonkey.net/
-// @version      0.6f
+// @namespace    https://github.com/NitroCipher/ext2to3
+// @version      0.6g
 // @description  try to take over the world!
 // @author       NitroCipher and Jamesbmadden
 // @match        https://scratch.mit.edu/convert/*
@@ -58,13 +58,15 @@
             ${convertFunctions(descriptor, ext)}
         }
         Scratch.extensions.register(new ${id}());`; // TODO: Add functions
-        $(".box-content").css("text-align", "left");
-        $(".box-content").css("padding-left", "50px");
-        $(".box-content").html("<pre>" + js_beautify(result) + "</pre>");
-        $(".box-head").html("<h2>Ext2to3</h2><button id='extDownload' type='button'>Download " + name + " as a 3.0 extension file</button>");
-        $( "#extDownload" ).click(function() {
-           download(js_beautify(result), name + "_3.js", "text/javascript");
-        });
+        setTimeout(function(){
+            $(".box-content").css("text-align", "left");
+            $(".box-content").css("padding-left", "50px");
+            $(".box-content").html("<pre>" + js_beautify(result) + "</pre>");
+            $(".box-head").html("<h2>Ext2to3</h2><button id='extDownload' type='button'>Download " + name + " as a 3.0 extension file</button>");
+            $( "#extDownload" ).click(function() {
+                download(js_beautify(result), name + "_3.js", "text/javascript");
+            });
+        }, 3000);
     });
 
     function getUrlVars() {
