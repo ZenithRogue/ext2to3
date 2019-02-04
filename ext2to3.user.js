@@ -20,7 +20,7 @@
     var argDefaults;
     var argNames;
     $(".box-head").html("<h2>Ext2to3</h2><button id='extDownload' type='button'>Please wait as we make the 3.0 extension</button>"); // While it's loading, show some content
-    $(".box-content").html(`<img src="//cdn.scratch.mit.edu/scratchr2/static/__238e692fba4864e9ff337c17d8a4033d__/images/404-giga.png" style="margin:20px;padding: 10px;"><div class="box-header"> <h1>Trying to convert ${url}...</h1></div><br><p>If this message doesnt disappear, than this extension may be incompatible at this time, please check back later, or <a href="https://github.com/NitroCipher/ext2to3/issues/new">create and issue on our github</a></p><br><br>`);
+    $(".box-content").html(`<img src="//cdn.scratch.mit.edu/scratchr2/static/__238e692fba4864e9ff337c17d8a4033d__/images/404-giga.png" style="margin:20px;padding: 10px;"><div class="box-header"> <h1>Trying to convert ${url}...</h1></div><br><p>If this message doesn't disappear, than this extension may be incompatible at this time, please check back later, or <a href="https://github.com/NitroCipher/ext2to3/issues/new">create and issue on our github</a></p><br><br>`);
     $.ajax({
         url: url,
         text: "text/plain"
