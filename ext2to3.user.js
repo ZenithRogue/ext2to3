@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scratch ext2to3
 // @namespace    http://tampermonkey.net/
-// @version      0.6d
+// @version      0.6e
 // @description  try to take over the world!
 // @author       NitroCipher and Jamesbmadden
 // @match        https://scratch.mit.edu/convert/*
@@ -19,8 +19,7 @@
     var argDescriptor;
     var argDefaults;
     var argNames;
-    $(".box-head").html("<h2>Ext2to3</h2>"); // While it's loading, show some content
-    $(".box-content").html(`<h1>Converting ${url}...</h1>`);
+    $(".box-head").html("<h2>Ext2to3</h2><button id='extDownload' type='button'>Please wait as we make the 3.0 extension</button>"); // While it's loading, show some content
     $.ajax({
         url: url,
         text: "text/plain"
