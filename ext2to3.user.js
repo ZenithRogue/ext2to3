@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scratch ext2to3
 // @namespace    https://github.com/NitroCipher/ext2to3
-// @version      0.6h
+// @version      0.6i
 // @description  try to take over the world!
 // @author       NitroCipher and Jamesbmadden
 // @match        https://scratch.mit.edu/convert/*
@@ -53,6 +53,7 @@
         };
         /* Create a String with the code for the Scratch 3 extension */
         let result = `class ${id} {
+            //Converted from ${url} to Scratch 3.0 using Ext2to3!
             getInfo() {
                 return ${JSON.stringify(info)};
             }
@@ -157,10 +158,10 @@
 
     function convertFunctions (descriptor, ext) {
         let functions = '';
-            descriptor.blocks.forEach((block, index) => {
+        descriptor.blocks.forEach((block, index) => {
             let func = ext[block[2]]; // Get the function for the block
             let named = func.toString().replace('function', block[2]); // Convert to string and replace the function prefix with the function name
-            functions +=  named.replace('(', '({').replace(')', '})'); // Encase the arguments in {} for the new format
+            functions += named.replace('(', '({').replace(')', '})'); // Encase the arguments in {} for the new format
         });
         return functions;
     }
