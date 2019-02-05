@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Scratch ext2to3
+// @name         Scratch Ext2to3
 // @namespace    https://github.com/NitroCipher/ext2to3
 // @version      0.6i
 // @description  try to take over the world!
