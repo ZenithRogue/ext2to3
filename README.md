@@ -10,6 +10,11 @@ Converting Scratch 2.0 Extensions to Scratch 3.0
 6. Get the link for the extension (should look something like ```https://nitrocipher.github.io/ext2to3/ext-test.js```)
 7. Append that to ```https://sheeptester.github.io/scratch-gui/?url=```, and try out your new extension!
 
-### WARNING: This is highly experimental (and highly incomplete), and I would love help with it
+### WARNING: This is highly experimental (and not fully complete), and I would love help with it
 
 Once you have the script installed, [go here for an example](https://scratch.mit.edu/convert/?url=https://raw.githubusercontent.com/NitroCipher/NitroBlock/master/MainScript.js)
+
+
+#### Credits:
+* NitroCipher
+* jamesbmadden --big props to this guy
