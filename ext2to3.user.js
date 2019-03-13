@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scratch Ext2to3
 // @namespace    https://github.com/NitroCipher/ext2to3
-// @version      0.6i
+// @version      0.7a
 // @description  try to take over the world!
 // @author       NitroCipher and Jamesbmadden
 // @match        https://scratch.mit.edu/convert/*
@@ -48,6 +48,19 @@
                     blockType: getBlockType(block[0]), // Get the block type
                     text: getNewArgs(block, ext[block[2]]), // TODO: Change the inputs to the new format
                     arguments: argDescriptor
+                }
+            }),
+            menus: Object.keys(descriptor.menus).map((menu, index) => { // convert the menu to the new format
+                return {
+                    [menu]: descriptor.menus[menu].map((item, mIndex) => {
+                        return {
+                            value: item,
+                            text: ({
+                                id: menu +"."+ item.replace(/\s/g,''),
+                                defaultMessage: item
+                            })
+                        }
+                    })
                 }
             })
         };
