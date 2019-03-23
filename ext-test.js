@@ -1,4 +1,5 @@
 class NitroBlock {
+    //Converted from https://raw.githubusercontent.com/NitroCipher/NitroBlock/master/MainScript.js to Scratch 3.0 using Ext2to3!
     getInfo() {
         return {
             "id": "NitroBlock",
@@ -91,15 +92,19 @@ class NitroBlock {
             }, {
                 "opcode": "mathy",
                 "blockType": "reporter",
-                "text": "[num1] %m.supermath [oper]",
+                "text": "[num1] [oper] [num2]",
                 "arguments": {
                     "num1": {
                         "type": "number",
                         "defaultValue": ""
                     },
                     "oper": {
-                        "type": "number",
+                        "type": "string",
+                        "menu": "supermath",
                         "defaultValue": ""
+                    },
+                    "num2": {
+                        "type": "number"
                     }
                 }
             }, {
@@ -251,6 +256,45 @@ class NitroBlock {
                         "defaultValue": "http://google.com"
                     }
                 }
+            }],
+            "menus": [{
+                "supermath": [{
+                    "value": "+",
+                    "text": {
+                        "id": "supermath_Kwzz",
+                        "defaultMessage": "+"
+                    }
+                }, {
+                    "value": "-",
+                    "text": {
+                        "id": "supermath_LQzz",
+                        "defaultMessage": "-"
+                    }
+                }, {
+                    "value": "/",
+                    "text": {
+                        "id": "supermath_Lwzz",
+                        "defaultMessage": "/"
+                    }
+                }, {
+                    "value": "*",
+                    "text": {
+                        "id": "supermath_Kgzz",
+                        "defaultMessage": "*"
+                    }
+                }, {
+                    "value": "^",
+                    "text": {
+                        "id": "supermath_Xgzz",
+                        "defaultMessage": "^"
+                    }
+                }, {
+                    "value": "sqrt",
+                    "text": {
+                        "id": "supermath_c3FydAzz",
+                        "defaultMessage": "sqrt"
+                    }
+                }]
             }]
         };
     }
