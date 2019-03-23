@@ -261,37 +261,37 @@ class NitroBlock {
                 "supermath": [{
                     "value": "+",
                     "text": {
-                        "id": "supermath.Kwzz",
+                        "id": "supermath_Kwzz",
                         "defaultMessage": "+"
                     }
                 }, {
                     "value": "-",
                     "text": {
-                        "id": "supermath.LQzz",
+                        "id": "supermath_LQzz",
                         "defaultMessage": "-"
                     }
                 }, {
                     "value": "/",
                     "text": {
-                        "id": "supermath.Lwzz",
+                        "id": "supermath_Lwzz",
                         "defaultMessage": "/"
                     }
                 }, {
                     "value": "*",
                     "text": {
-                        "id": "supermath.Kgzz",
+                        "id": "supermath_Kgzz",
                         "defaultMessage": "*"
                     }
                 }, {
                     "value": "^",
                     "text": {
-                        "id": "supermath.Xgzz",
+                        "id": "supermath_Xgzz",
                         "defaultMessage": "^"
                     }
                 }, {
                     "value": "sqrt",
                     "text": {
-                        "id": "supermath.c3FydAzz",
+                        "id": "supermath_c3FydAzz",
                         "defaultMessage": "sqrt"
                     }
                 }]
