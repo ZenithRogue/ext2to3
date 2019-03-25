@@ -1,3 +1,4 @@
+const formatMessage = require('format-message');
 class NitroBlock {
     //Converted from https://raw.githubusercontent.com/NitroCipher/NitroBlock/master/MainScript.js to Scratch 3.0 using Ext2to3!
     getInfo() {
@@ -260,40 +261,46 @@ class NitroBlock {
             "menus": [{
                 "supermath": [{
                     "value": "+",
-                    "text": {
-                        "id": "supermath_Kwzz",
-                        "defaultMessage": "+"
-                    }
+                    "text": formatMessage({
+                        "id": "supermath.Kwzz",
+                        "default": "+",
+                        "description": ""
+                    })
                 }, {
                     "value": "-",
-                    "text": {
-                        "id": "supermath_LQzz",
-                        "defaultMessage": "-"
-                    }
+                    "text": formatMessage({
+                        "id": "supermath.LQzz",
+                        "default": "-",
+                        "description": ""
+                    })
                 }, {
                     "value": "/",
-                    "text": {
-                        "id": "supermath_Lwzz",
-                        "defaultMessage": "/"
-                    }
+                    "text": formatMessage({
+                        "id": "supermath.Lwzz",
+                        "default": "/",
+                        "description": ""
+                    })
                 }, {
                     "value": "*",
-                    "text": {
-                        "id": "supermath_Kgzz",
-                        "defaultMessage": "*"
-                    }
+                    "text": formatMessage({
+                        "id": "supermath.Kgzz",
+                        "default": "*",
+                        "description": ""
+                    })
                 }, {
                     "value": "^",
-                    "text": {
-                        "id": "supermath_Xgzz",
-                        "defaultMessage": "^"
-                    }
+                    "text": formatMessage({
+                        "id": "supermath.Xgzz",
+                        "default": "^",
+                        "description": ""
+                    })
                 }, {
                     "value": "sqrt",
-                    "text": {
-                        "id": "supermath_c3FydAzz",
-                        "defaultMessage": "sqrt"
-                    }
+                    "text": formatMessage({
+                        "id": "supermath.c3FydAzz",
+                        "default": "sqrt",
+                        "description": ""
+                    })
                 }]
             }]
         };
