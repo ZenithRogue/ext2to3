@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scratch Ext2to3
 // @namespace    https://github.com/NitroCipher/ext2to3
-// @version      0.8a
+// @version      0.8b
 // @description  try to take over the world!
 // @author       NitroCipher and Jamesbmadden
 // @match        https://scratch.mit.edu/convert/*
@@ -134,7 +134,18 @@
         var myArg;
         switch (oldText) {
             default:
-                fullArg = fullArg + " " + oldText;
+                if (oldText.startsWith("%m.")){
+                    myArg = argNames[argValue];
+                    fullArg = fullArg + " [" + myArg + "]";
+                    argDescriptor[myArg] = {
+                        "type": "string",
+                        "menu": oldText.split('.')[1],
+                        "defaultValue": argDefaults[argValue],
+                    };
+                    argValue++;
+                } else {
+                    fullArg = fullArg + " " + oldText;
+                }
                 break;
             case '%b':
                 myArg = argNames[argValue];
