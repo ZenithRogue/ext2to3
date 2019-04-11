@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scratch Ext2to3
 // @namespace    https://github.com/NitroCipher/ext2to3
-// @version      0.7b
+// @version      0.8a
 // @description  try to take over the world!
 // @author       NitroCipher and Jamesbmadden
 // @match        https://scratch.mit.edu/convert/*
@@ -50,27 +50,25 @@
                     arguments: argDescriptor
                 }
             }),
-            menus: Object.keys(descriptor.menus).map((menu, index) => { // convert the menu to the new format
-                return {
-                    [menu]: descriptor.menus[menu].map((item, mIndex) => {
-                        return {
-                            value: item,
-                            text: ({
-                                id: menu +"."+ item.replace(/\s/g,''),
-                                defaultMessage: item
-                            })
-                        }
-                    })
-                }
-            })
+            menus: getMenus(descriptor)
         };
         /* Create a String with the code for the Scratch 3 extension */
         let result = `class ${id} {
             //Converted from ${url} to Scratch 3.0 using Ext2to3!
             getInfo() {
-                return ${JSON.stringify(info)};
+                return ${JSON.stringify(info).replace(/\"&&&{/gi, "{").replace(/}&&&\"/gi, "}")};
             }
             ${convertFunctions(descriptor, ext)}
+            _formatMenu (menu) {
+                const m = [];
+                for (let i = 0; i < menu.length; i++) {
+                    const obj = {};
+                    obj.text = menu[i];
+                    obj.value = i.toString();
+                    m.push(obj);
+                }
+                    return m;
+                }
         }
         Scratch.extensions.register(new ${id}());`; // TODO: Add functions
         setTimeout(function(){
@@ -83,6 +81,14 @@
             });
         }, 3000);
     });
+
+    function getMenus(descriptor) {
+        var newMenu = '&&&{';
+        Object.keys(descriptor.menus).map((menu, index) => { // convert the menu to the new format
+            newMenu += [menu] + ": this._formatMenu(['"+descriptor.menus[menu].join("', '")+ "']),";
+        });
+        return newMenu + '}&&&';
+    }
 
     function getUrlVars() {
         var vars = {};
