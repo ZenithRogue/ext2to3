@@ -92,15 +92,19 @@ class NitroBlock {
             }, {
                 "opcode": "mathy",
                 "blockType": "reporter",
-                "text": "[num1] %m.supermath [oper]",
+                "text": "[num1] [oper] [num2]",
                 "arguments": {
                     "num1": {
                         "type": "number",
                         "defaultValue": ""
                     },
                     "oper": {
-                        "type": "number",
+                        "type": "string",
+                        "menu": "supermath",
                         "defaultValue": ""
+                    },
+                    "num2": {
+                        "type": "number"
                     }
                 }
             }, {
