@@ -1,4 +1,3 @@
-const formatMessage = require('format-message');
 class NitroBlock {
     //Converted from https://raw.githubusercontent.com/NitroCipher/NitroBlock/master/MainScript.js to Scratch 3.0 using Ext2to3!
     getInfo() {
@@ -93,19 +92,15 @@ class NitroBlock {
             }, {
                 "opcode": "mathy",
                 "blockType": "reporter",
-                "text": "[num1] [oper] [num2]",
+                "text": "[num1] %m.supermath [oper]",
                 "arguments": {
                     "num1": {
                         "type": "number",
                         "defaultValue": ""
                     },
                     "oper": {
-                        "type": "string",
-                        "menu": "supermath",
+                        "type": "number",
                         "defaultValue": ""
-                    },
-                    "num2": {
-                        "type": "number"
                     }
                 }
             }, {
@@ -258,51 +253,9 @@ class NitroBlock {
                     }
                 }
             }],
-            "menus": [{
-                "supermath": [{
-                    "value": "+",
-                    "text": formatMessage({
-                        "id": "supermath.Kwzz",
-                        "default": "+",
-                        "description": ""
-                    })
-                }, {
-                    "value": "-",
-                    "text": formatMessage({
-                        "id": "supermath.LQzz",
-                        "default": "-",
-                        "description": ""
-                    })
-                }, {
-                    "value": "/",
-                    "text": formatMessage({
-                        "id": "supermath.Lwzz",
-                        "default": "/",
-                        "description": ""
-                    })
-                }, {
-                    "value": "*",
-                    "text": formatMessage({
-                        "id": "supermath.Kgzz",
-                        "default": "*",
-                        "description": ""
-                    })
-                }, {
-                    "value": "^",
-                    "text": formatMessage({
-                        "id": "supermath.Xgzz",
-                        "default": "^",
-                        "description": ""
-                    })
-                }, {
-                    "value": "sqrt",
-                    "text": formatMessage({
-                        "id": "supermath.c3FydAzz",
-                        "default": "sqrt",
-                        "description": ""
-                    })
-                }]
-            }]
+            "menus": {
+                supermath: this._formatMenu(['+', '-', '/', '*', '^', 'sqrt']),
+            }
         };
     }
     ncheck({
@@ -454,6 +407,16 @@ class NitroBlock {
             window.httpdata = data;
         });
         return window.httpdata;
+    }
+    _formatMenu(menu) {
+        const m = [];
+        for (let i = 0; i < menu.length; i++) {
+            const obj = {};
+            obj.text = menu[i];
+            obj.value = i.toString();
+            m.push(obj);
+        }
+        return m;
     }
 }
 Scratch.extensions.register(new NitroBlock());
